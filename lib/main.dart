@@ -24,16 +24,16 @@ void main() async {
                   children: <Widget>[
                     new Divider(height: 5.5,),
                     new ListTile(
-                      title: new Text(_data[indexValue]['title']),
-                      subtitle: new Text(_data[indexValue]['body']),
+                      title: new Text(_data[indexValue]['name']),
+                      subtitle: new Text(_data[indexValue]['address']['street']),
                       leading: new CircleAvatar(
                         child: new Text("${_data[indexValue]['id']}"),
                         backgroundColor: Colors.pinkAccent,
                       ),
-                      onTap: () => display.showDBox(context, _data[indexValue]['body']),
+                      onTap: () => display.showDBox(context, _data[indexValue]['address']['city'], indexValue),
                     )
                   ],
-                )
+                );
 
           })
         ),
@@ -42,7 +42,7 @@ void main() async {
 }
 
 Future<List> getJasonStuff() async{
-    http.Response theResponse = await http.get("http://jsonplaceholder.typicode.com/posts");
+    http.Response theResponse = await http.get("http://jsonplaceholder.typicode.com/users");
     return json.decode(theResponse.body);
 }
 
